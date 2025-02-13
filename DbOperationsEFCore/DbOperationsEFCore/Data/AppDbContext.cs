@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DbOperationsWithEFCore.Data
+namespace DbOperationsEFCore.Data
 {
     public class AppDbContext : DbContext 
     {
