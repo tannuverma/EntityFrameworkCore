@@ -18,6 +18,7 @@ namespace DbOperationsEFCore.Data
                 new Currency() { Id = 3, Title = "Euro", Description = "Euro" },
                 new Currency() { Id = 4, Title = "Dinar", Description = "Dinar" }
                 );
+
             modelBuilder.Entity<Language>().HasData(
                 new Language() { Id = 1, Title = "Hindi", Description = "Hindi" },
                 new Language() { Id = 2, Title = "English", Description = "English" },
@@ -31,5 +32,5 @@ namespace DbOperationsEFCore.Data
         public DbSet<Language> Languages { get; set; }
         public DbSet<BookPrice> BookPrices { get; set; }
         public DbSet<Currency> Currencies { get; set; }
-}
+    }
 }
