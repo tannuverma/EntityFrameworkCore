@@ -37,14 +37,14 @@ namespace DbOperationsEFCore.Controllers
         }
 
         //[HttpGet("{name}")]
-        //public async Task<IActionResult> GetCurrencyByIdAsync([FromRoute] string name)
+        //public async Task<IActionResult> GetCurrencyByTitleAsync([FromRoute] string name)
         //{
         //    var result = await _appDbContext.Currencies.FirstOrDefaultAsync(x => x.Title == name);
         //    return Ok(result);
         //}
 
         [HttpGet("{name}")]
-        public async Task<IActionResult> GetCurrencyByIdAsync([FromRoute] string name, [FromQuery] string? description)
+        public async Task<IActionResult> GetCurrencyByTitleAndDescriptionAsync([FromRoute] string name, [FromQuery] string? description)
         {
             var result = await _appDbContext.Currencies
                 .FirstOrDefaultAsync(x => x.Title == name 
