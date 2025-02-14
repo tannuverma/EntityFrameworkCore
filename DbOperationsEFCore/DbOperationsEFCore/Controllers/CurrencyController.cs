@@ -47,8 +47,27 @@ namespace DbOperationsEFCore.Controllers
         public async Task<IActionResult> GetCurrencyByTitleAndDescriptionAsync([FromRoute] string name, [FromQuery] string? description)
         {
             var result = await _appDbContext.Currencies
-                .FirstOrDefaultAsync(x => x.Title == name 
+                .FirstOrDefaultAsync(x => x.Title == name
                 && (string.IsNullOrEmpty(description) || x.Description == description));
+            return Ok(result);
+        }
+
+        //[HttpGet("all")]
+        //public async Task<IActionResult> GetCurrencyBylistOfIdAsync()
+        //{
+        //    var ids = new List<int> { 1, 3 };
+        //    var result = await _appDbContext.Currencies
+        //        .Where(x => ids.Contains(x.Id)).ToListAsync();
+        //    return Ok(result);
+        //}
+
+        //--we can convert the above method as POST and also pass the ids from body--
+        [HttpPost("all")]
+        public async Task<IActionResult> GetCurrencyBylistOfIdAsync([FromBody] List<int> ids)
+        {
+            //var ids = new List<int> { 1, 3 };
+            var result = await _appDbContext.Currencies
+                .Where(x => ids.Contains(x.Id)).ToListAsync();
             return Ok(result);
         }
     }
