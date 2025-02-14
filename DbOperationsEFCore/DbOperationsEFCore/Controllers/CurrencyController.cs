@@ -62,13 +62,30 @@ namespace DbOperationsEFCore.Controllers
         //}
 
         //--we can convert the above method as POST and also pass the ids from body--
+        //[HttpPost("all")]
+        //public async Task<IActionResult> GetCurrencyBylistOfIdAsync([FromBody] List<int> ids)
+        //{
+        //    //var ids = new List<int> { 1, 3 };
+        //    var result = await _appDbContext.Currencies
+        //        .Where(x => ids.Contains(x.Id)).ToListAsync();
+        //    return Ok(result);
+        //}
+
+        //--selecting specific columns from the table instead of all--
         [HttpPost("all")]
         public async Task<IActionResult> GetCurrencyBylistOfIdAsync([FromBody] List<int> ids)
         {
             //var ids = new List<int> { 1, 3 };
             var result = await _appDbContext.Currencies
-                .Where(x => ids.Contains(x.Id)).ToListAsync();
+                .Where(x => ids.Contains(x.Id))
+                .Select(x => new Currency()
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                })
+                .ToListAsync();
             return Ok(result);
         }
+
     }
 }
