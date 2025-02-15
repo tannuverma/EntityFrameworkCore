@@ -16,6 +16,9 @@ namespace DbOperationsEFCore
             builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("AppDb")));
 
+            //--used to log the sql queries in the console kind of replacement for profiler in SSMS--
+            //.LogTo(Console.WriteLine));
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
