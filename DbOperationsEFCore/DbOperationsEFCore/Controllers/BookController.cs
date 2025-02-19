@@ -16,6 +16,13 @@ namespace DbOperationsEFCore.Controllers
             _appDbContext = appDbContext;
         }
 
+        [HttpGet("")]
+        public async Task<IActionResult> GetAllBooks()
+        {
+            var books = await _appDbContext.Books.ToListAsync();
+            return Ok(books);
+        }
+
         [HttpPost("")]
         public async Task<IActionResult> AddNewBookAsync([FromBody] Book book)
         {

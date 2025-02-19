@@ -25,7 +25,8 @@ namespace DbOperationsEFCore.Controllers
             //var result = await _appDbContext.Currencies.ToListAsync();
 
             //method 2(SQl query format)
-            var result = await (from currencies in _appDbContext.Currencies select currencies).ToListAsync();
+            //--used AsNoTracking() method to increase the performance effciency--
+            var result = await (from currencies in _appDbContext.Currencies select currencies).AsNoTracking().ToListAsync();
             return Ok(result);
         }
 
